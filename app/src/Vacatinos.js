@@ -56,7 +56,7 @@ function Vacatinos() {
     try {
       setreviesCard([]);
       console.log(cardId, "running");
-      const res = await axios.get(`http://localhost:8888/review/${cardId}`);
+      const res = await axios.get(`https://what-to-eat.herokuapp.com/review/${cardId}`);
       console.log(res);
       setreviesCard(res.data);
       console.log(res.data, "revies");
@@ -69,7 +69,7 @@ function Vacatinos() {
     console.log("id", id);
     const fetchData = async () => {
       try {
-        const res = await axios.delete(`http://localhost:8888/products/${id}`);
+        const res = await axios.delete(`https://what-to-eat.herokuapp.com/products/${id}`);
         console.log(res);
         return setRemoveItem(false);
       } catch (error) {
@@ -83,7 +83,7 @@ function Vacatinos() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:8888/products/");
+        const res = await axios.get("https://what-to-eat.herokuapp.com/products/");
         setCards(res.data);
       } catch (error) {
         console.error(error);
@@ -98,7 +98,7 @@ function Vacatinos() {
     const obj = { personId: value, productId: cardId, products: cardId };
     const fetchData = async () => {
       try {
-        const res = await axios.post("http://localhost:8888/followes/", obj);
+        const res = await axios.post("https://what-to-eat.herokuapp.com/followes/", obj);
         // setCards(res.data);
         console.log(res.data);
         return setLoading(false);
@@ -115,6 +115,9 @@ function Vacatinos() {
   };
 
   const post = async (e) => {
+    if(!inputValue){
+      return alert('לא כתוב כלום')
+    }
     setCardId(e.target.id);
     console.log(e.target.id);
     console.log(inputValue);
@@ -129,7 +132,7 @@ function Vacatinos() {
     };
     try {
       console.log(obj, "obj");
-      const res = await axios.post("http://localhost:8888/Review/", obj);
+      const res = await axios.post("https://what-to-eat.herokuapp.com/Review/", obj);
       console.log(res, "okk");
     } catch (error) {
       console.log(error);
@@ -264,7 +267,7 @@ function Vacatinos() {
                       (rcard) =>
                         rcard.productId === card.id && (
                           <ListGroup key={rcard.id}>
-                            <ListGroup.Item>{rcard.name}: {rcard.text} <Rating rating={4} />  </ListGroup.Item>
+                            <ListGroup.Item>{rcard.name}: {rcard.text} </ListGroup.Item>
                           </ListGroup>
                         )
                     )}

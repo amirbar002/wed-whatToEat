@@ -23,6 +23,24 @@ export const findProducts = async (
   })
 }
 
+export const findProductsToRundom = async (
+  productId?: number,
+  withRelations = false
+): Promise<Product[]> => {
+  return await Product.find({
+    ...(productId ? { where: { district : productId } } : {}),
+    ...(withRelations
+      ? {
+          relations: {
+          // Review: true,
+          },
+        }
+      : {}),
+  })
+}
+
+
+
 export const updateProduct = async (
   productId: number,
   data: Product

@@ -3,7 +3,8 @@ import { Router, Request, Response } from 'express'
 import { 
   analayzeQuantity,
    createProduct,
-    findProducts,  
+    findProducts,
+    findProductsToRundom,   
     updateProduct } from '../controllers/products'
 import { deleteProduct } from '../controllers/products'
 
@@ -20,10 +21,23 @@ router.post('/', async (req: Request, res: Response) => {
 })
 
 
+
 router.get('/:id', async (req: Request, res: Response) => {
   try {
     const withRelations = req.query.withRelations === 'true'
     const [product] = await findProducts(+req.params.id, withRelations)
+    product ? res.send(product) : res.sendStatus(404)
+  } catch (error) {
+    console.error(error)
+    res.sendStatus(500)
+  }
+})
+
+router.get('/rundom/:id', async (req: Request, res: Response) => {
+  try {
+    console.log('start')
+    const withRelations = req.query.withRelations === 'true'
+    const product = await findProductsToRundom(+req.params.id, withRelations)
     product ? res.send(product) : res.sendStatus(404)
   } catch (error) {
     console.error(error)

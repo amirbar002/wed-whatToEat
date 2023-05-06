@@ -6,12 +6,12 @@ import { Person } from './entity/Person'
 import { Product } from './entity/Product'
 
 export const AppDataSource = new DataSource({
-  type: RDBMS_MYSQL,
-  host: process.env.MYSQL_HOST,
-  port: +process.env.MYSQL_PORT,
-  username: process.env.MYSQL_USERNAME,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DB_NAME,
+  type: 'mysql',
+  host: 'eu-cdbr-west-03.cleardb.net',
+  port: +3306,
+  username: 'badf1974e9747a',
+  password: '49e13abe',
+  database:'heroku_a5eeed9315caf50',
   synchronize: true,
   logging: false,
   entities: [Person, Product,Review], 

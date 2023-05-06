@@ -14,13 +14,13 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       return res.sendStatus(401)
     }
 
-    if (!process.env.ACCESS_TOKEN_SECRET) {
+    if (!'95792a1d403ca62260932de86c440e1c4e57b7d9559b58ed22416b07958b63ea511800fd2bf97cd0b17543fa89ec5c3f241d35c8e269f754bb37497c804f1119') {
       return res.sendStatus(500)
     }
 
     jwt.verify(
       token,
-      process.env.ACCESS_TOKEN_SECRET,
+     '95792a1d403ca62260932de86c440e1c4e57b7d9559b58ed22416b07958b63ea511800fd2bf97cd0b17543fa89ec5c3f241d35c8e269f754bb37497c804f1119',
       async (err: VerifyErrors | null, decoded: any) => {
         if (err) {
           return res.status(403).send({errors: ['You do not have permission']})
